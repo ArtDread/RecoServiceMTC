@@ -19,15 +19,14 @@ CONTAINER_NAME := reco_service
 .venv:
 	poetry install --no-root
 	poetry check
-	# Загрузка implicit и lightfm. Через pip, отдельно от poetry
-#	. .venv/bin/activate
+
 	pip install implicit==0.4.4 lightfm==1.16
 
-setup: .venv
-
 load_models:
-	# Загрузка моделей "make load_models" с Google Drive (бывший "make script")
-	./load_models_from_google_drive.sh
+	./load_models_from_gdrive.sh
+
+setup: .venv load_models
+
 
 # Clean
 
