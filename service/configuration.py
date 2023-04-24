@@ -1,31 +1,41 @@
+"""This module contains paths to the saved python objects."""
+
 # Popular models and its data
-POPULAR_MODEL_RECS = "models/popular_dictionary.pickle"
-POPULAR_MODEL_USERS = "models/users_dictionary.pickle"
-POPULAR_IN_CATEGORY = "models/popular_in_category/popular_in_category_model.dill"
+POPULAR_MODEL_RECS = "models/popular/popular_dictionary.pickle"
+POPULAR_MODEL_USERS = "models/popular/users_dictionary.pickle"
+POPULAR_IN_CATEGORY = "models/popular/popular_in_category.dill"
 
 # KNN models and its data
-OFFLINE_KNN_MODEL_PATH = "models/offline-dictionary-with-hot-knn-recs.dill"
-ONLINE_KNN_MODEL_PATH = "models/user-knn.dill"
+OFFLINE_KNN_MODEL = "models/knn/dictionary_with_hot_recs.dill"
+ONLINE_KNN_MODEL = "models/knn/user_knn.dill"
 
 # Factorization Machines models and its data
-LIGHT_FM = "models/light_fm.dill"
-USER_MAPPING = "models/user_mapping.dill"
-ITEM_MAPPING = "models/item_mapping.dill"
-FEATURES_FOR_COLD = "models/features_for_cold.dill"
-UNIQUE_FEATURES = "models/unique_features.dill"
+LIGHT_FM = "models/lightfm/light_fm.dill"
+USER_MAPPING = "models/lightfm/user_mapping.dill"
+ITEM_MAPPING = "models/lightfm/item_mapping.dill"
+FEATURES_FOR_COLD = "models/lightfm/features_for_cold.dill"
+UNIQUE_FEATURES = "models/lightfm/unique_features.dill"
 
-ANN_user_m = "models/lightfm/user_mapping.dill"
-ANN_item_inv_m = "models/lightfm/item_inv_mapping.dill"
-ANN_index_path = "models/lightfm/items_index.hnsw"
-ANN_user_emb = "models/lightfm/user_embeddings.dill"
-ANN_watched_u2i = "models/lightfm/watched_user2items_dictionary.dill"
-ANN_COLD_RECO_DICT = "models/lightfm/lightfm_cold_users_reco_dictionary_popular.dill"
+LIGHTFM_PATHS = (
+    LIGHT_FM,
+    USER_MAPPING,
+    ITEM_MAPPING,
+    FEATURES_FOR_COLD,
+    UNIQUE_FEATURES,
+)
+
+ANN_USER_MAPPING = "models/lightfm/ann/user_mapping.dill"
+ANN_ITEM_INV_MAPPING = "models/lightfm/ann/item_inv_mapping.dill"
+ANN_ITEMS_INDEX = "models/lightfm/ann/items_index.hnsw"
+ANN_USER_EMBEDDING = "models/lightfm/ann/user_embeddings.dill"
+ANN_WATCHED_U2I_DICT = "models/lightfm/ann/watched_user2items_dictionary.dill"
+ANN_COLD_RECO_DICT = "models/lightfm/ann/cold_users_dictionary_popular.dill"
 
 ANN_PATHS = (
-    ANN_user_m,
-    ANN_item_inv_m,
-    ANN_index_path,
-    ANN_user_emb,
-    ANN_watched_u2i,
+    ANN_USER_MAPPING,
+    ANN_ITEM_INV_MAPPING,
+    ANN_ITEMS_INDEX,
+    ANN_USER_EMBEDDING,
+    ANN_WATCHED_U2I_DICT,
     ANN_COLD_RECO_DICT,
 )
