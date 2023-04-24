@@ -13,7 +13,7 @@ download() {
     echo "$file_name" "was downloaded"
 }
 
-download "models/lightfm/light_fm.dill" "1NjTwM9hMveiV8twsfmcElswkj6iAZnsx"
+download "models/lightfm/light_fm.dill" "1qbiS9J8B9TBgcaY_YmUk1tJPBGHkudVF"
 
 download "models/lightfm/ann/user_embeddings.dill" "107WdHB8Ka6Hqupw4g3iALLEG2w3N52y9"
 
