@@ -48,3 +48,16 @@ class BearerAccessTokenError(AppException):
         error_loc: tp.Optional[tp.Sequence[str]] = None,
     ):
         super().__init__(status_code, error_key, error_message, error_loc)
+
+
+class MultiplicityUserId(AppException):
+    """Silly error to test bug-tracker Sentry."""
+
+    def __init__(
+        self,
+        status_code: int = HTTPStatus.BAD_REQUEST,
+        error_key: str = "user_mutiple_666",
+        error_message: str = "This particular user id is a multiple of 666",
+        error_loc: tp.Optional[tp.Sequence[str]] = None,
+    ):
+        super().__init__(status_code, error_key, error_message, error_loc)

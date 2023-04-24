@@ -8,6 +8,7 @@ from pydantic import BaseModel
 from service.api.exceptions import (
     BearerAccessTokenError,
     ModelNotFoundError,
+    MultiplicityUserId,
     UserNotFoundError,
 )
 from service.api.reco_response import recoGenerators
@@ -90,7 +91,10 @@ async def get_reco(
     if user_id > 10**9:
         raise UserNotFoundError(error_message=f"User {user_id} not found")
 
-    k_recs = request.app.state.k_recs
+    emulate_random_error: bool = request.app.state.emulate_random_error
+    if emulate_random_error and (user_id and not user_id % 666):
+        raise MultiplicityUserId(error_message=f"User {user_id} is a multiple of 666")
+    k_recs: int = request.app.state.k_recs
 
     reco: None | list[int] = None
     try:
