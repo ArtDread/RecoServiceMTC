@@ -1,6 +1,6 @@
-from .popular import PopularInCategory, SimplePopularModel
-from .lightfm import OnlineLightFM, ANNLightFM
 from .knn import OfflineKnnModel, OnlineKnnModel
+from .lightfm import ANNLightFM, OnlineLightFM
+from .popular import PopularInCategory, SimplePopularModel
 
 __all__ = [
     "PopularInCategory",

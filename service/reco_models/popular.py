@@ -1,8 +1,15 @@
 from __future__ import annotations
 
 import pickle
+from typing import TypedDict
 
 import dill
+
+
+class PopularDict(TypedDict):
+    user_to_watched_items_map: dict[int, set[int]]
+    user_to_category_map: dict[int, str]
+    category_to_popular_recs: dict[str, list[int]]
 
 
 class SimplePopularModel:
@@ -38,7 +45,7 @@ class PopularInCategory:
     def __init__(self, model_path: str):
         try:
             with open(model_path, "rb") as file:
-                self.model: dict[str, object] = dill.load(file)
+                self.model: PopularDict = dill.load(file)
         except FileNotFoundError as e:
             print(
                 f"ERROR while loading model: {e}"
