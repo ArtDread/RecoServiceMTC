@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import List
 
 from fastapi import APIRouter, Depends, FastAPI, Request
 from fastapi.security import HTTPBearer
@@ -50,7 +51,7 @@ ann_lightfm = ANNLightFM(ANN_PATHS, popular_model)
 
 class RecoResponse(BaseModel):
     user_id: int
-    items: list[int]
+    items: List[int]
 
 
 bearer_scheme = HTTPBearer()
