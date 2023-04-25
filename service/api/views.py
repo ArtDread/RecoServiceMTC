@@ -88,7 +88,7 @@ async def get_reco(
 ) -> RecoResponse:
     app_logger.info(f"Request for model: {model_name}, user_id: {user_id}")
 
-    if token.credentials != "Team_5":
+    if token.credentials != "DanielMoor":
         raise BearerAccessTokenError()
     if user_id > 10**9:
         raise UserNotFoundError(error_message=f"User {user_id} not found")
