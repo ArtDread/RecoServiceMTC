@@ -20,7 +20,7 @@ class LogConfig(Config):
 class ServiceConfig(Config):
     service_name: str = "reco_service"
     k_recs: int = 10
-    emulate_random_error: bool = True
+    emulate_random_error: bool = False
 
     log_config: LogConfig
 
