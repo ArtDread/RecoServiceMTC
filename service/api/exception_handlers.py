@@ -1,4 +1,4 @@
-from typing import Union
+from __future__ import annotations
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
@@ -33,7 +33,7 @@ async def http_error_handler(
 
 
 async def validation_error_handler(
-    request: Request, exc: Union[RequestValidationError, ValidationError]
+    request: Request, exc: RequestValidationError | ValidationError
 ) -> JSONResponse:
     errors = [
         Error(

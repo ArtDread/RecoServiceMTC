@@ -22,7 +22,7 @@ def test_get_reco_success(
     user_id = 123
     path = GET_RECO_PATH.format(model_name="test_model", user_id=user_id)
     with client:
-        response = client.get(path, headers={"Authorization": "Bearer Team_5"})
+        response = client.get(path, headers={"Authorization": "Bearer DanielMoor"})
     assert response.status_code == HTTPStatus.OK
     response_json = response.json()
     assert response_json["user_id"] == user_id
@@ -36,7 +36,7 @@ def test_get_reco_for_unknown_user(
     user_id = 10**10
     path = GET_RECO_PATH.format(model_name="test_model", user_id=user_id)
     with client:
-        response = client.get(path, headers={"Authorization": "Bearer Team_5"})
+        response = client.get(path, headers={"Authorization": "Bearer DanielMoor"})
     assert response.status_code == HTTPStatus.NOT_FOUND
     assert response.json()["errors"][0]["error_key"] == "user_not_found"
 
@@ -48,7 +48,7 @@ def test_get_reco_for_unknown_model(
     incorrect_model = "_"
     path = GET_RECO_PATH.format(model_name=incorrect_model, user_id=user_id)
     with client:
-        response = client.get(path, headers={"Authorization": "Bearer Team_5"})
+        response = client.get(path, headers={"Authorization": "Bearer DanielMoor"})
     assert response.status_code == HTTPStatus.NOT_FOUND
     assert response.json()["errors"][0]["error_key"] == "model_not_found"
 
@@ -60,6 +60,8 @@ def test_bearer_failed(
     incorrect_bearer = "lasdkladsk"
     path = GET_RECO_PATH.format(model_name="test_model", user_id=user_id)
     with client:
-        response = client.get(path, headers={"Authorization": f"Bearer {incorrect_bearer}"})
+        response = client.get(
+            path, headers={"Authorization": f"Bearer {incorrect_bearer}"}
+        )
     assert response.status_code == HTTPStatus.UNAUTHORIZED
     assert response.json()["errors"][0]["error_key"] == "incorrect_bearer_key"

@@ -1,17 +1,12 @@
-from .popular_in_category_model import PopularInCategory
-from .reco_models import (
-    ANNLightFM,
-    OfflineKnnModel,
-    OnlineFM,
-    OnlineKnnModel,
-    SimplePopularModel,
-)
+from .knn import OfflineKnnModel, OnlineKnnModel
+from .lightfm import ANNLightFM, OnlineLightFM
+from .popular import PopularInCategory, SimplePopularModel
 
 __all__ = [
     "PopularInCategory",
     "ANNLightFM",
     "OfflineKnnModel",
-    "OnlineFM",
+    "OnlineLightFM",
     "OnlineKnnModel",
     "SimplePopularModel",
 ]

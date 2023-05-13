@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 import json
-import typing as tp
 from http import HTTPStatus
 
 import orjson
@@ -10,7 +11,7 @@ from service.models import Error
 
 
 class EnhancedJSONEncoder(json.JSONEncoder):
-    def default(self, o: tp.Any) -> tp.Any:
+    def default(self, o: object) -> object:
         if isinstance(o, BaseModel):
             return o.dict()
         try:
@@ -23,7 +24,7 @@ class EnhancedJSONEncoder(json.JSONEncoder):
 class DataclassJSONResponse(JSONResponse):
     media_type = "application/json"
 
-    def render(self, content: tp.Any) -> bytes:
+    def render(self, content: object) -> bytes:
         return json.dumps(
             content,
             ensure_ascii=False,
@@ -36,23 +37,23 @@ class DataclassJSONResponse(JSONResponse):
 
 def create_response(
     status_code: int,
-    message: tp.Optional[str] = None,
-    data: tp.Optional[tp.Any] = None,
-    errors: tp.Optional[tp.List[Error]] = None,
+    message: None | str = None,
+    data: None | object = None,
+    errors: None | list[Error] = None,
 ) -> JSONResponse:
-    content: tp.Dict[str, tp.Any] = {}
+    content: dict[str, object] = {}
 
-    if message is not None:
+    if message:
         content["message"] = message
 
-    if data is not None:
+    if data:
         content["data"] = data
 
-    if errors is not None:
+    if errors:
         content["errors"] = errors
 
     return DataclassJSONResponse(content, status_code=status_code)
 
 
-def server_error(errors: tp.List[Error]) -> JSONResponse:
+def server_error(errors: list[Error]) -> JSONResponse:
     return create_response(HTTPStatus.INTERNAL_SERVER_ERROR, errors=errors)
