@@ -14,7 +14,7 @@ from .middlewares import add_middlewares
 from .views import add_views
 
 sentry_sdk.init(
-    dsn="http://fe289b7f3ec84e788ad3ef59598f230a@127.0.0.1:9000/2",
+    dsn="http://b89608ffa0fb40468bab8ef22eeb91eb@5.159.103.107:9000/2",
     traces_sample_rate=1.0,
 )
 
