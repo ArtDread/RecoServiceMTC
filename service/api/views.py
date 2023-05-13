@@ -20,6 +20,7 @@ from service.api.responses import (
     NotFoundError,
 )
 from service.configuration import (
+    AE_PATHS,
     ANN_PATHS,
     LIGHTFM_PATHS,
     OFFLINE_KNN_MODEL,
@@ -32,6 +33,7 @@ from service.log import app_logger
 from service.reco_models import (
     ANNLightFM,
     OfflineKnnModel,
+    OnlineAE,
     OnlineKnnModel,
     OnlineLightFM,
     PopularInCategory,
@@ -48,6 +50,7 @@ online_knn_model = OnlineKnnModel(ONLINE_KNN_MODEL)
 online_fm_part_popular = OnlineLightFM(LIGHTFM_PATHS)
 online_fm_all_popular = OnlineLightFM(LIGHTFM_PATHS, False)
 ann_lightfm = ANNLightFM(ANN_PATHS, popular_model)
+ae_model = OnlineAE(AE_PATHS)
 
 
 class RecoResponse(BaseModel):

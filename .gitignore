@@ -72,6 +72,8 @@ models/knn/user_knn.dill
 models/lightfm/light_fm.dill
 models/lightfm/ann/user_embeddings.dill
 models/popular/popular_in_category.dill
+models/ae/VariationalAE
+models/ae/hot_users_weights.dill
 
 # Other
 poetry.lock

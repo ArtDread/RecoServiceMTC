@@ -20,3 +20,7 @@ download "models/lightfm/ann/user_embeddings.dill" "107WdHB8Ka6Hqupw4g3iALLEG2w3
 download "models/popular/popular_in_category.dill" "1roodlsVXvouTbAbtx57SRBIMx38t8GRO"
 
 download "models/knn/user_knn.dill" "1gDrHPzSYB12CXXKKaZRxlHQW6bcedv48"
+
+download "models/ae/VariationalAE" "1d23oUSTnYQOqAjO10Uu-qOOWzMoqsSLm"
+
+download "models/ae/hot_users_weights.dill" "1BVrOkVYmxt2orspq6DOoj-Xui6lAwOMH"

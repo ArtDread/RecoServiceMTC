@@ -38,6 +38,11 @@ def ann_lightfm_recos(k_recs: int, user_id: int) -> None | list[int]:
     return views.ann_lightfm.predict(user_id)
 
 
+def ae_recos(k_recs: int, user_id: int) -> None | list[int]:
+    """Use PyTorch autoencoder model to generate recos."""
+    return views.ae_model.predict(user_id, k_recs)
+
+
 recoGenerators = {
     "test_model": simple_recos,
     "baseline": baseline_recos,
@@ -46,4 +51,5 @@ recoGenerators = {
     "light_fm_hot": light_fm_hot_recos,
     "light_fm_all": light_fm_all_recos,
     "ann_lightfm": ann_lightfm_recos,
+    "ae_model": ae_recos,
 }
