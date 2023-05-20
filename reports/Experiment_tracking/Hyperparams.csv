@@ -1,0 +1,8 @@
+Id,Creation Time,Owner,Monitoring Time,training/hyperparams/model,training/Technical/General_train_time (min),training/Technical/Epoch_train_time (min),training/hyperparams/optimizer,training/hyperparams/device,training/hyperparams/k,Failed,training/hyperparams/batch_size,training/hyperparams/wd,training/hyperparams/lr,training/Technical/Model_size (Mb),training/hyperparams/enc_dims
+AES-17,2023-05-20 21:34:48,christerbin,267,DenoisingAE,4.38,0.44,Adam,cuda,10,false,10000,0.01,0.001,49.55,"[6180, 1000, 10]"
+AES-16,2023-05-20 21:29:02,christerbin,271,DenoisingAE,4.31,0.43,Adam,cuda,10,false,10000,0.01,0.001,9.91,"[6180, 200]"
+AES-15,2023-05-20 21:06:36,christerbin,530,DenoisingAE,8.72,0.44,Adam,cuda,10,false,10000,0.01,0.001,30.65,"[6180, 600, 200]"
+AES-13,2023-05-20 20:53:16,christerbin,507,VariationalAE,8.35,0.42,Adam,cuda,10,false,10000,0.01,0.001,37.11,"[6180, 500]"
+AES-12,2023-05-20 20:44:00,christerbin,542,VariationalAE,8.51,0.43,Adam,cuda,10,false,10000,0.01,0.001,54.08,"[6180, 1000, 500, 100]"
+AES-11,2023-05-20 20:34:19,christerbin,486,VariationalAE,7.58,0.38,Adam,cuda,10,false,2048,0.01,0.001,7.44,"[6180, 100]"
+AES-10,2023-05-20 20:26:13,christerbin,473,VariationalAE,7.83,0.39,Adam,cuda,10,false,1024,0.01,0.001,31.14,"[6180, 600, 200]"
