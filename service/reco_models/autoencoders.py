@@ -56,11 +56,11 @@ class OnlineAE:
         try:
             with open(model_path, "rb") as fp:
                 state_dict = torch.load(fp, map_location=self.device)
+                self.model.load_state_dict(state_dict, strict=True)
+                self.model.to(self.device)
+                self.model.eval()
         except FileNotFoundError:
             print("Run `make load_models` to load the pickled weights")
-        self.model.load_state_dict(state_dict, strict=True)
-        self.model.to(self.device)
-        self.model.eval()
 
     def _create_user_input(self, input_dim, user_id) -> torch.Tensor:
         """Build proper user input for the autoencoder model.
