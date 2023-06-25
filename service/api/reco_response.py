@@ -43,6 +43,10 @@ def ae_recos(k_recs: int, user_id: int) -> None | list[int]:
     return views.ae_model.predict(user_id, k_recs)
 
 
+def tdssm_recs(k_recs: int, user_id: int) -> None | list[int]:
+    return views.tdssm.predict(user_id)
+
+
 recoGenerators = {
     "test_model": simple_recos,
     "baseline": baseline_recos,
@@ -52,4 +56,5 @@ recoGenerators = {
     "light_fm_all": light_fm_all_recos,
     "ann_lightfm": ann_lightfm_recos,
     "ae_model": ae_recos,
+    "tdssm": tdssm_recs,
 }

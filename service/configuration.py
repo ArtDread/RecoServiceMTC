@@ -54,3 +54,6 @@ AE_PATHS = (
     AE_ITEM_MAPPING,
     AE_ENC_DIMS,
 )
+
+# DSSMs and its data
+TDSSM_PATH = "models/dssm/tdssm_user_recs.dill"
