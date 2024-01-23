@@ -39,3 +39,21 @@ ANN_PATHS = (
     ANN_WATCHED_U2I_DICT,
     ANN_COLD_RECO_DICT,
 )
+
+# AE models and its data
+AE_MODEL = "models/ae/VariationalAE"
+AE_HOT_USERS = "models/ae/hot_users.dill"
+AE_HOT_USERS_WEIGHTS = "models/ae/hot_users_weights.dill"
+AE_ITEM_MAPPING = "models/ae/item_to_ind"
+AE_ENC_DIMS = "models/ae/VariationalAE_dims.pickle"
+
+AE_PATHS = (
+    AE_MODEL,
+    AE_HOT_USERS,
+    AE_HOT_USERS_WEIGHTS,
+    AE_ITEM_MAPPING,
+    AE_ENC_DIMS,
+)
+
+# DSSMs and its data
+TDSSM_PATH = "models/dssm/tdssm_user_recs.dill"

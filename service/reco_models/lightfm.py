@@ -105,8 +105,6 @@ class OnlineLightFM:
 
 
 class ANNLightFM:
-    # pylint: disable=too-many-instance-attributes
-    # Eight is reasonable in this case.
     def __init__(
         self,
         ann_paths: tuple[str, str, str, str, str, str],
