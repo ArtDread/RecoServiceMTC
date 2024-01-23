@@ -13,6 +13,7 @@ from service.api.exceptions import (
     MultiplicityUserId,
     UserNotFoundError,
 )
+from service.api.explanation_response import explanationGenerators
 from service.api.reco_response import recoGenerators
 from service.api.responses import (
     AuthorizationResponse,
@@ -61,6 +62,11 @@ class RecoResponse(BaseModel):
     items: List[int]
 
 
+class ExplainResponse(BaseModel):
+    p: int
+    explanation: str
+
+
 bearer_scheme = HTTPBearer()
 
 router = APIRouter()
@@ -92,6 +98,20 @@ async def get_reco(
     user_id: int,
     token: HTTPAuthorizationCredentials = Depends(bearer_scheme),
 ) -> RecoResponse:
+    """
+    Get top-k recommendations for the specific user_id using selected model.
+
+    Args:
+        request: The request.
+        model_name: The name of model to make recommendations.
+        user_id: The specific user id for which recommendations are demanded.
+        token: The token to verify a service user.
+
+    Returns:
+        A RecoResponse containing (user_id, items), where user_id is the same as input
+            parameter, items are top-k recommendations.
+
+    """
     app_logger.info(f"Request for model: {model_name}, user_id: {user_id}")
 
     if token.credentials != "DanielMoor":
@@ -102,8 +122,8 @@ async def get_reco(
     emulate_random_error: bool = request.app.state.emulate_random_error
     if emulate_random_error and (user_id and not user_id % 666):
         raise MultiplicityUserId(error_message=f"User {user_id} is a multiple of 666")
-    k_recs: int = request.app.state.k_recs
 
+    k_recs: int = request.app.state.k_recs
     reco: None | list[int] = None
     try:
         reco = recoGenerators[model_name](k_recs, user_id)
@@ -113,6 +133,50 @@ async def get_reco(
     if not reco:
         reco = popular_model.predict(user_id, k_recs)
     return RecoResponse(user_id=user_id, items=reco)
+
+
+@router.get(
+    path="/explain/{model_name}/{user_id}/{item_id}",
+    tags=["Explanations"],
+    response_model=ExplainResponse,
+    responses=responses,  # type: ignore
+)
+async def explain(
+    model_name: str,
+    user_id: int,
+    item_id: int,
+    token: HTTPAuthorizationCredentials = Depends(bearer_scheme),
+) -> ExplainResponse:
+    """
+    Get the explanation for the relevance of (user_id, item_if) for specific model.
+
+    Return the relevance score of specific item for specific user and text explanation
+    as well. The method of generating that information will be depend on model type.
+
+    Args:
+        model_name: The name of model for which an explanation is demanded.
+        user_id: The specific user id for which an explanation is demanded.
+        item_id: The specific item id for which an explanation is demanded.
+        token: The token to verify a service user.
+
+    Returns:
+        An ExplainResponse containing (p, explanation), where p is the item relevance
+            score for the provided user, in %; explanation is the explanation message
+                of result.
+
+    """
+    if token.credentials != "DanielMoor":
+        raise BearerAccessTokenError()
+    if user_id > 10**9:
+        raise UserNotFoundError(error_message=f"User {user_id} not found")
+
+    try:
+        p, explanation = explanationGenerators[model_name](user_id, item_id)
+    except KeyError:
+        raise ModelNotFoundError(
+            error_message=f"Explanation for model {model_name} not implemented yet"
+        )
+    return ExplainResponse(p=p, explanation=explanation)
 
 
 def add_views(app: FastAPI) -> None:
